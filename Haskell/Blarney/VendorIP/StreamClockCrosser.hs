@@ -110,7 +110,7 @@ makeStreamClockCrosser
         , crossClkOut = clkOut
         , crossRstOut = rstOut
         , crossValidIn = streamIn.canPeek
-        , crossDataIn = streamIn.peek.pack
+        , crossDataIn = pack streamIn.peek
         , crossReadyOut = consumeWire.val
         }
 
@@ -122,5 +122,5 @@ makeStreamClockCrosser
     Source {
       consume = do consumeWire <== true
     , canPeek = outStream.crossValidOut
-    , peek = outStream.crossDataOut.unpack
+    , peek = unpack outStream.crossDataOut
     }
